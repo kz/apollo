@@ -1,4 +1,4 @@
-import 'package:apollo/ui/patient/prescriptions.dart';
+import 'package:apollo/ui/patient/order_confirmed.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,7 +23,7 @@ class _MyHomePageState extends State<HomePage> {
         // the App.build method, and use it to set our appbar title.
           title: new Text("Prescriptions")),
       body: new Container(
-        child: new PrescriptionPage(),
+        child: new OrderConfirmedPage(),
       ),
     );
   }
