@@ -1,4 +1,4 @@
-import 'package:apollo/ui/patient/order_confirmed.dart';
+import 'package:apollo/ui/patient/user.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,11 +19,11 @@ class _MyHomePageState extends State<HomePage> {
     // than having to individually change instances of widgets.
     return new Scaffold(
       appBar: new AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
           title: new Text("Prescriptions")),
       body: new Container(
-        child: new OrderConfirmedPage(),
+        child: new UserPage(),
       ),
     );
   }
