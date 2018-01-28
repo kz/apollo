@@ -32,7 +32,7 @@ class _PatientContainerState extends State<PatientContainer>
 
     _pageDetails = [
       new _PageDetail(
-        title: "Prescription",
+        title: "Prescriptions",
         icon: Icons.assignment,
       ),
       new _PageDetail(
@@ -51,9 +51,6 @@ class _PatientContainerState extends State<PatientContainer>
     return new DefaultTabController(
       length: _numTabs,
       child: new Scaffold(
-        appBar: new AppBar(
-          title: new Text(_pageDetails[_screen].title),
-        ),
         body: new TabBarView(
           controller: _controller,
           children: <Widget>[
@@ -73,8 +70,12 @@ class _PatientContainerState extends State<PatientContainer>
           items: new List<BottomNavigationBarItem>.generate(_pageDetails.length,
               (int index) {
             return new BottomNavigationBarItem(
-              icon: new Icon(_pageDetails[index].icon),
-              title: new Text(_pageDetails[index].title),
+              icon: new Icon(_pageDetails[index].icon,
+                  color: new Color(0xff00ACC1)),
+              title: new Text(
+                _pageDetails[index].title,
+                style: new TextStyle(color: new Color(0xff00ACC1)),
+              ),
             );
           }),
         ),
