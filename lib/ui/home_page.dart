@@ -1,4 +1,4 @@
-import 'package:apollo/ui/patient/user.dart';
+import 'package:apollo/ui/patient/user_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

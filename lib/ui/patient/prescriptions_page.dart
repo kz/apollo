@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class PrescriptionPage extends StatelessWidget {
+class PrescriptionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
       padding: const EdgeInsets.only(top: 8.0),
       child: new ListView(
         children: <Widget>[
-          new PrescriptionPageListItem(),
-          new PrescriptionPageListItem(),
+          new PrescriptionsPageListItem(),
+          new PrescriptionsPageListItem(),
         ],
       ),
     );
   }
 }
 
-class PrescriptionPageListItem extends StatelessWidget {
+class PrescriptionsPageListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
