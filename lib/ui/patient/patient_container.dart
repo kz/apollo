@@ -2,9 +2,49 @@ import 'package:apollo/ui/patient/chemists_page.dart';
 import 'package:apollo/ui/patient/prescriptions_page.dart';
 import 'package:apollo/ui/patient/user_page.dart';
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
-class PatientContainer extends StatelessWidget {
-  final int _numTabs = 4;
+class PatientContainer extends StatefulWidget {
+  @override
+  _PatientContainerState createState() => new _PatientContainerState();
+}
+
+class _PageDetail {
+  String title;
+  IconData icon;
+
+  _PageDetail({@required this.title, @required this.icon});
+}
+
+class _PatientContainerState extends State<PatientContainer>
+    with SingleTickerProviderStateMixin {
+  final int _numTabs = 3;
+
+  TabController _controller;
+  int _screen;
+  List<_PageDetail> _pageDetails;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = new TabController(length: _numTabs, vsync: this);
+    _screen = 0;
+
+    _pageDetails = [
+      new _PageDetail(
+        title: "Prescription",
+        icon: Icons.assignment,
+      ),
+      new _PageDetail(
+        title: "Chemists",
+        icon: Icons.location_city,
+      ),
+      new _PageDetail(
+        title: "Profile",
+        icon: Icons.person,
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,42 +52,32 @@ class PatientContainer extends StatelessWidget {
       length: _numTabs,
       child: new Scaffold(
         appBar: new AppBar(
-          title: const Text('Title'), // Todo: Remove
-          bottom: new TabBar(
-            isScrollable: true,
-            tabs: <Widget>[
-              new Tab(
-                text: "Prescriptions",
-                icon: new Icon(Icons.assignment),
-              ),
-              new Tab(
-                text: "Chemists",
-                icon: new Icon(Icons.location_city),
-              ),
-              new Tab(
-                text: "Me",
-                icon: new Icon(Icons.person),
-              ),
-            ],
-          ),
+          title: new Text(_pageDetails[_screen].title),
         ),
         body: new TabBarView(
-          children: <Padding>[
-            new Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: new PrescriptionsPage(),
-            ),
-            new Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: new ChemistsPage(),
-            ),
-            new Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: new UserPage(),
-            ),
-          ]
+          controller: _controller,
+          children: <Widget>[
+            new PrescriptionsPage(),
+            new ChemistsPage(),
+            new UserPage(),
+          ],
         ),
-
+        bottomNavigationBar: new BottomNavigationBar(
+          currentIndex: _screen,
+          onTap: (int index) {
+            setState(() {
+              _screen = index;
+              _controller.animateTo(index);
+            });
+          },
+          items: new List<BottomNavigationBarItem>.generate(_pageDetails.length,
+              (int index) {
+            return new BottomNavigationBarItem(
+              icon: new Icon(_pageDetails[index].icon),
+              title: new Text(_pageDetails[index].title),
+            );
+          }),
+        ),
       ),
     );
   }
